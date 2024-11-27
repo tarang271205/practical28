@@ -1,0 +1,61 @@
+Program: 28 Write a program to read the marks of 10 students for the subject CEUC101 
+Computer concepts and Programming and computes the number of students in 
+categories FAIL, PASS, FIRST 
+CLASS and DISTINCTION using Pointers and Arrays. 
+Marks Categories 
+70 or above DISTINCTION 
+69 to 60 FIRST CLASS 
+59 to 40 PASS 
+Below 40 FAIL 
+For example, if following marks of 10 students are entered: 
+34 56 78 98 12 31 67 75 91 23 
+Then the output should be 
+DISTINCTION 4 FIRST CLASS 1 PASS 1 FAIL 4 
+Code: #include <stdio.h> 
+#include <stdlib.h> 
+ 
+#define STUDENTS 10 
+ 
+int main() { 
+    int *marks; 
+    int distinction = 0, firstClass = 0, pass = 0, fail = 0; 
+ 
+    // Dynamically allocate memory for marks of 10 students 
+    marks = (int *)malloc(STUDENTS * sizeof(int)); 
+    if (marks == NULL) { 
+        printf("Memory allocation failed!\n"); 
+        return 1; 
+    } 
+ 
+    // Input marks for students 
+    printf("Enter marks of %d students for CEUC101 (0-100):\n", STUDENTS); 
+    for (int i = 0; i < STUDENTS; i++) { 
+        printf("Student %d: ", i + 1); 
+        scanf("%d", marks + i); // Use pointer arithmetic to store marks 
+    } 
+ 
+    // Classify marks 
+    for (int i = 0; i < STUDENTS; i++) { 
+        if (*(marks + i) >= 70) { 
+            distinction++; 
+        } else if (*(marks + i) >= 60) { 
+            firstClass++; 
+        } else if (*(marks + i) >= 40) { 
+            pass++; 
+        } else { 
+            fail++; 
+        } 
+    } 
+ 
+    // Output the result 
+    printf("\nRESULTS:\n"); 
+    printf("DISTINCTION: %d\n", distinction); 
+    printf("FIRST CLASS: %d\n", firstClass); 
+    printf("PASS: %d\n", pass); 
+    printf("FAIL: %d\n", fail); 
+ 
+    // Free allocated memory 
+    free(marks);
+    printf("\n\n24ce032_TARANG");
+       return 0; 
+}
